@@ -1,7 +1,7 @@
 from math import sqrt, pi
 from abc import abstractmethod, ABC
 
-from errors import NegativeNumberError
+from area_of_figures.errors import NegativeNumberError, TriangleError
 
 
 class Figure(ABC):
@@ -37,14 +37,12 @@ class Triangle(Figure):
         # вычисляем полупериметр
         s = (self.a + self.b + self.c) / 2
 
-        # проверяем является ли фигура треугольником
-        if s > max([self.a, self.b, self.c]) / 2:
-            # вычисляем площадь треугольника по формуле Герона
-            return sqrt(s * (s - self.a) * (s - self.b) * (s - self.c))
-        else:
-            raise ValueError(
-                "Сумма длин сторон должна быть больше полупериметра!"
-            )
+        if not (self.a + self.b > self.c and
+                self.a + self.c > self.b and
+                self.b + self.c > self.a):
+            raise TriangleError('Стороны не могут образовать треугольник!')
+        # вычисляем площадь треугольника по формуле Герона
+        return sqrt(s * (s - self.a) * (s - self.b) * (s - self.c))
 
 
 def calculate_area(shape):
@@ -61,21 +59,11 @@ def calculate_area(shape):
                 )
              
         return shape.area()
-    except AttributeError as err:
+    except (
+        AttributeError, 
+        ValueError, 
+        TypeError, 
+        NegativeNumberError, 
+        TriangleError
+        ) as err:
         return err
-    except ValueError as err:
-        return err
-    except TypeError as err:
-        return err
-    except NegativeNumberError as err:
-        return err
-
-
-if __name__ == '__main__':
-    circule = Circle(radius=-1)
-    circule_area = calculate_area(shape=circule)
-    print(f'Площадь круга = {circule_area}')
-
-    triangle = Triangle(a=3, b=4, c=5)
-    triangle_area = calculate_area(shape=triangle)
-    print(f'Площадь треугольника = {triangle_area}')

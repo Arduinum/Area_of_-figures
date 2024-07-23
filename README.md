@@ -12,5 +12,5 @@ Area of figures - библиотека для высчитывания площ�
 
 ## Установка библиотеки (пример Debian, Ubuntu)
 
-**С файлом tar.gz**: `pip install ./dist/area_of_figures-0.1.tar.gz`
-**С файлом whl**: `pip install ./dist/area_of_figures-0.1-py3-none-any.whl`
+- **С файлом tar.gz**: `pip install ./dist/area_of_figures-0.1.tar.gz`
+- **С файлом whl**: `pip install ./dist/area_of_figures-0.1-py3-none-any.whl`

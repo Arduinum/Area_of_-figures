@@ -1,0 +1,1 @@
+from area_of_figures.area_of_figures import *

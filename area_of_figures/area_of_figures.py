@@ -20,7 +20,7 @@ class Circle(Figure):
         self.radius = radius
 
     def area(self):
-        """Метод для рассчёта площади круга"""
+        """Метод для расчёта площади круга"""
         
         return self.radius ** 2 * pi
 
